@@ -65,7 +65,6 @@ public class Main {
             e.printStackTrace();
         }
 
-        // Xử lý kết quả từ Thread 2 và Thread 3
         List<String> results = new ArrayList<>();
         for (int i = 0; i < thread2Tasks.size(); i++) {
         	String name = thread2Tasks.get(i).getName();
@@ -79,7 +78,6 @@ public class Main {
             results.add(result);
         }
 
-        // Tạo file kq.xml
         createResultXML(results);
     }
 
@@ -88,19 +86,16 @@ public class Main {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
 
-            // Root element
             Document doc = docBuilder.newDocument();
             Element rootElement = doc.createElement("Results");
             doc.appendChild(rootElement);
 
-            // Adding results
             for (String result : results) {
                 Element studentElement = doc.createElement("Student");
                 studentElement.setTextContent(result);
                 rootElement.appendChild(studentElement);
             }
-
-            // Write the content into kq.xml
+            
             File outputFile = new File("kq.xml");
             FileWriter fileWriter = new FileWriter(outputFile);
             fileWriter.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n");
@@ -204,7 +199,7 @@ class Thread3Task implements Runnable {
         return isDigitPrime;
     }
 
-    // Phương thức tính tổng các chữ số trong chuỗi
+    // Tổng
     private int calculateDigitSum(String str) {
         int sum = 0;
         for (int i = 0; i < str.length(); i++) {
@@ -216,7 +211,7 @@ class Thread3Task implements Runnable {
         return sum;
     }
 
-    // Phương thức kiểm tra xem một số có phải là số nguyên tố hay không
+    // kỉm tra số nguyên tố 
     private boolean isPrime(int n) {
         if (n <= 1) {
             return false;
